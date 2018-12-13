@@ -30,7 +30,7 @@ router.get('/', (req, res) => {
 
 
 
-router.post('/blog-posts', jsonParser, (req, res) => {
+router.post('/', jsonParser, (req, res) => {
   // ensure fields are in request body
   const requiredFields = ['title', 'content','author','publishDate'];
   for (let i=0; i<requiredFields.length; i++) {
@@ -41,18 +41,19 @@ router.post('/blog-posts', jsonParser, (req, res) => {
       return res.status(400).send(message);
     }
   }
-  const item = Recipes.create(req.body.name, req.body.ingredients);
+  const item = BlogPosts.create(req.body.title, req.body.content,req.body.author,req.body.publishDate);
   res.status(201).json(item);
 });
-
+//title, content, author, publishDate
 // Delete recipes (by id)!
-router.delete('/blog-posts/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
   BlogPosts.delete(req.params.id);
   console.log(`Deleted post item \`${req.params.ID}\``);
   res.status(204).end();
 });
 
-router.put(' /blog-posts/:id', jsonParser, (req, res) => {
+router.put('/:id', jsonParser, (req, res) => {
+    console.log("hi");
   const requiredFields = ['title', 'content','author','publishDate', 'id'];
   for (let i=0; i<requiredFields.length; i++) {
     const field = requiredFields[i];

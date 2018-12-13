@@ -29,11 +29,8 @@ router.get('/', (req, res) => {
 });
 
 
-// when new recipe added, ensure has required fields. if not,
-// log error and return 400 status code with hepful message.
-// if okay, add new item, and return it with a status 201.
 
-router.post('/', jsonParser, (req, res) => {
+router.post('/blog-posts', jsonParser, (req, res) => {
   // ensure fields are in request body
   const requiredFields = ['title', 'content','author','publishDate'];
   for (let i=0; i<requiredFields.length; i++) {
@@ -49,18 +46,13 @@ router.post('/', jsonParser, (req, res) => {
 });
 
 // Delete recipes (by id)!
-router.delete('/:id', (req, res) => {
+router.delete('/blog-posts/:id', (req, res) => {
   BlogPosts.delete(req.params.id);
   console.log(`Deleted post item \`${req.params.ID}\``);
   res.status(204).end();
 });
 
-// when PUT request comes in with updated post, ensure has
-// required fields. also ensure that post id is in url path, and
-// post id is an updated item object match. if problems with any
-// of that, log error and send back status code 400. otherwise
-// call `BlogPosts.updateItem` with updated post.
-router.put('/:id', jsonParser, (req, res) => {
+router.put(' /blog-posts/:id', jsonParser, (req, res) => {
   const requiredFields = ['title', 'content','author','publishDate', 'id'];
   for (let i=0; i<requiredFields.length; i++) {
     const field = requiredFields[i];
@@ -78,7 +70,7 @@ router.put('/:id', jsonParser, (req, res) => {
     return res.status(400).send(message);
   }
   console.log(`Updating blog post item \`${req.params.id}\``);
-  const updatedItem = Recipes.update({
+  const updatedItem = BlogPosts.update({
     id: req.params.id,
     title: req.body.title,
     content: req.body.content,

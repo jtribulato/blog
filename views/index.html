@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <title>Welcome to The Blog</title>
     <meta name="description" content="Blog to blog any and all things">
     <meta charset="utf-8">
@@ -9,14 +10,15 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
     <link rel="stylesheet" href="/styles.css">
-  </head>
-  <body>
+</head>
+
+<body>
     <div class="container">
-      <header>
-        <h1>Blog of Blogs</h1>
-      </header>
-      <main>
-        <section>
+        <header>
+            <h1>Blog of Blogs</h1>
+        </header>
+        <main>
+            <!-- <section>
           <h2>Blog</h2>
           <form id="blog-form">
             <label for="blog-entry">Add an post</label>
@@ -26,30 +28,35 @@
 
           <ul class="blog-items">
           </ul>
-        </section>
-        <hr>
-        <section>
-          <h2>Recipes</h2>
-          <form id="blog-listings">
-            <div>
-              <label for="recipe-name">Recipe name</label>
-              <input type="text" name="recipe-name" id="recipe-name" placeholder="e.g., smoothie">
-            </div>
-            <div>
-              <label for="ingredients-list">Ingredients</label>
-              <input type="text" name="ingredients-list" id="ingredients-list", placeholder="yogurt, orange juice, strawberries, banana, peanut butter">
-            </div>
-            <button type="submit">Add recipe</button>
-          </form>
+        </section> -->
+            <hr>
+            <section>
+                <h2>Welcome to my Blog</h2>
+                <p class="introduction">Welcome to the blog of blogs. lorem ipsum etc etc etc.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur.
+                </p>
+                <hr>
+                <form action="/blog-posts" method="post" id="blog-form" >   
+                    <label for="blog-entry">Add a post</label><br>
+                    Title <input type="text" name="blog-entry-title" id="js-new-item" placeholder="enter the title of your  post"><br>
+                    Post <textarea type="text" name="blog-entry-content" id="js-new-item" placeholder="enter your post"></textarea><br>
+                    Author <input type="text" name="blog-entry-author" id="js-new-item" placeholder="enter your name"><br>
+                    Date <input type="date" name="blog-entry-publishDate" id="js-new-item" placeholder="enter the date"><br>
 
-          <ul class="listings">
-          </ul>
-        </section>
-      </main>
+ 
+                    <button type="submit">Submit your Post</button>
+                  </form>
+                <ul class="blogListings">
+                </ul>
+            </section>
+        </main>
     </div>
-    <script src="//code.jquery.com/jquery-3.1.1.min.js"
-    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-    crossorigin="anonymous"></script>
+    <script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
     <script src="/client.js"></script>
-  </body>
+</body>
+
 </html>

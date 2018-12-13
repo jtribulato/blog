@@ -1,26 +1,23 @@
 
-var shoppingItemTemplate = (
-    '<li class="js-shopping-item">' +
-      '<p><span class="shopping-item js-shopping-item-name"></span></p>' +
-      '<div class="shopping-item-controls">' +
-        '<button class="js-shopping-item-toggle">' +
-          '<span class="button-label">check</span>' +
-        '</button>' +
-        '<button class="js-shopping-item-delete">' +
-          '<span class="button-label">delete</span>' +
-        '</button>' +
-      '</div>' +
+var blogItemTemplate = (
+    '<li class="js-blog-item">' +
+      '<p><span class="blog-item js-blog-item-name"></span></p>' +
+      
     '</li>'
   );
   
-  var recipeTemplate = (
-    '<div class="recipe js-recipe">' +
-      '<h3 class="js-recipe-name"><h3>' +
+  var postTemplate = (
+    '<div class="post js-post">' +
+      '<h3 class="js-post-title"><h3>' +
       '<hr>' +
-      '<ul class="js-recipe-ingredients">' +
-      '</ul>' +
-      '<div class="recipe-controls">' +
-        '<button class="js-recipe-delete">' +
+      '<li class="js-post-content">' +
+      '</li>' +
+      '<li class="js-post-author">' +
+      '</li>' +
+      '<li class="js-post-publishDate">' +
+      '</li>' +
+      '<div class="post-controls">' +
+        '<button class="js-post-delete">' +
           '<span class="button-label">delete</span>' +
         '</button>' +
       '</div>' +
@@ -28,113 +25,105 @@ var shoppingItemTemplate = (
   );
   
   
-  const BLOG_URL = '/blog';
-
+  const BLOG_URL = './Blog';
   
   
-  function getAndDisplayRecipes() {
+  function getAndDisplayPosts() {
     console.log('Retrieving blog listings')
-    $.getJSON(RECIPES_URL, function(recipes) {
-      console.log('Rendering recipes');
-      var recipesElement = recipes.map(function(recipe) {
-        var element = $(recipeTemplate);
-        element.attr('id', recipe.id);
-        element.find('.js-recipe-name').text(recipe.name);
-        recipe.ingredients.forEach(function(ingredient) {
-          element.find('.js-recipe-ingredients').append(
-            '<li>' + ingredient + '</li>');
-        });
+    $.getJSON(BLOG_URL, function(posts) {
+      console.log('Rendering posts');
+      var postsElement = posts.map(function(post) {
+        var element = $(postTemplate);
+        element.attr('id', post.id);
+        element.find('.js-post-name').text(post.name);
         return element;
       });
-      $('.js-recipes').html(recipesElement)
+      $('.js-posts').html(postsElement)
     });
   }
   
-  function getAndDisplayShoppingList() {
-    console.log('Retrieving shopping list');
-    $.getJSON(SHOPPING_LIST_URL, function(items) {
-      console.log('Rendering shopping list');
+  function getAndDisplayBlogList() {
+    console.log('Retrieving blog list');
+    $.getJSON(BLOG_URL, function(items) {
+      console.log('Rendering blog list');
       var itemElements = items.map(function(item) {
-        var element = $(shoppingItemTemplate);
+        var element = $(blogItemTemplate);
         element.attr('id', item.id);
-        var itemName = element.find('.js-shopping-item-name');
+        var itemName = element.find('.js-blog-item-name');
         itemName.text(item.name);
-        element.attr('data-checked', item.checked);
-        if (item.checked) {
-          itemName.addClass('shopping-item__checked');
-        }
+ 
         return element
       });
-      $('.js-shopping-list').html(itemElements);
+      $('.js-blog-list').html(itemElements);
     });
   }
   
-  function addRecipe(recipe) {
-    console.log('Adding recipe: ' + recipe);
+  function addPost(post) {
+    console.log('Adding post: ' + post);
     $.ajax({
       method: 'POST',
-      url: RECIPES_URL,
-      data: JSON.stringify(recipe),
+      url: BLOG_URL,
+      data: JSON.stringify(post),
       success: function(data) {
-        getAndDisplayRecipes();
+        getAndDisplayPosts();
       },
       dataType: 'json',
       contentType: 'application/json'
     });
   }
   
-  function addShoppingItem(item) {
-    console.log('Adding shopping item: ' + item);
+  function addBlogItem(item) {
+    console.log('Adding blog item: ' + item);
     $.ajax({
       method: 'POST',
-      url: SHOPPING_LIST_URL,
+      url: BLOG_LIST_URL,
       data: JSON.stringify(item),
       success: function(data) {
-        getAndDisplayShoppingList();
+        getAndDisplayBlogList();
       },
       dataType: 'json',
       contentType: 'application/json'
     });
   }
   
-  function deleteRecipe(recipeId) {
-    console.log('Deleting recipe `' + recipeId + '`');
+  function deletePost(postId) {
+    console.log('Deleting post `' + postId + '`');
     $.ajax({
-      url: RECIPES_URL + '/' + recipeId,
+      url: BLOG_URL + '/' + postId,
       method: 'DELETE',
-      success: getAndDisplayRecipes
+      success: getAndDisplayPosts
     });
   }
   
-  function deleteShoppingItem(itemId) {
-    console.log('Deleting shopping item `' + itemId + '`');
+  function deleteBlogItem(itemId) {
+    console.log('Deleting blog item `' + itemId + '`');
     $.ajax({
-      url: SHOPPING_LIST_URL + '/' + itemId,
+      url: BLOG_LIST_URL + '/' + itemId,
       method: 'DELETE',
-      success: getAndDisplayShoppingList
+      success: getAndDisplayBlogList
     });
   }
   
-  function updateRecipe(recipe) {
-    console.log('Updating recipe `' + recipe.id + '`');
+  function updatePost(post) {
+    console.log('Updating post `' + post.id + '`');
     $.ajax({
-      url: RECIPES_URL + '/' + recipe.id,
+      url: BLOG_URL + '/' + post.id,
       method: 'PUT',
-      data: recipe,
+      data: post,
       success: function(data) {
-        getAndDisplayRecipes();
+        getAndDisplayPosts();
       }
     });
   }
   
-  function updateShoppingListitem(item) {
-    console.log('Updating shopping list item `' + item.id + '`');
+  function updateBlogListitem(item) {
+    console.log('Updating blog list item `' + item.id + '`');
     $.ajax({
-      url: SHOPPING_LIST_URL + '/' + item.id,
+      url: BLOG_LIST_URL + '/' + item.id,
       method: 'PUT',
       data: JSON.stringify(item),
       success: function(data) {
-        getAndDisplayShoppingList()
+        getAndDisplayBlogList()
       },
       dataType: 'json',
       contentType: 'application/json'
@@ -142,25 +131,25 @@ var shoppingItemTemplate = (
   }
   
   
-  function handleRecipeAdd() {
-    $('#js-recipe-form').submit(function(e) {
+  function handlePostAdd() {
+    $('#js-post-form').submit(function(e) {
       e.preventDefault();
       var ingredients = $(
         e.currentTarget).find(
         '#ingredients-list').val().split(',').map(
           function(ingredient) { return ingredient.trim() });
-      addRecipe({
-        name: $(e.currentTarget).find('#recipe-name').val(),
+      addPost({
+        name: $(e.currentTarget).find('#post-name').val(),
         ingredients: ingredients
       });
     });
   }
   
-  function handleShoppingListAdd() {
+  function handleBlogListAdd() {
   
-    $('#js-shopping-list-form').submit(function(e) {
+    $('#js-blog-list-form').submit(function(e) {
       e.preventDefault();
-      addShoppingItem({
+      addBlogItem({
         name: $(e.currentTarget).find('#js-new-item').val(),
         checked: false
       });
@@ -168,42 +157,29 @@ var shoppingItemTemplate = (
   
   }
   
-  function handleRecipeDelete() {
-    $('.js-recipes').on('click', '.js-recipe-delete', function(e) {
+  function handlePostDelete() {
+    $('.js-posts').on('click', '.js-post-delete', function(e) {
       e.preventDefault();
-      deleteRecipe(
-        $(e.currentTarget).closest('.js-recipe').attr('id'));
+      deletePost(
+        $(e.currentTarget).closest('.js-post').attr('id'));
     });
   }
   
-  function handleShoppingListDelete() {
-    $('.js-shopping-list').on('click', '.js-shopping-item-delete', function(e) {
+  function handleBlogListDelete() {
+    $('.js-blog-list').on('click', '.js-blog-item-delete', function(e) {
       e.preventDefault();
-      deleteShoppingItem(
-        $(e.currentTarget).closest('.js-shopping-item').attr('id'));
+      deleteBlogItem(
+        $(e.currentTarget).closest('.js-blog-item').attr('id'));
     });
   }
   
-  function handleShoppingCheckedToggle() {
-    $('.js-shopping-list').on('click', '.js-shopping-item-toggle', function(e) {
-      e.preventDefault();
-      var element = $(e.currentTarget).closest('.js-shopping-item');
   
-      var item = {
-        id: element.attr('id'),
-        checked: !JSON.parse(element.attr('data-checked')),
-        name: element.find('.js-shopping-item-name').text()
-      }
-      updateShoppingListitem(item);
-    });
-  }
   
   $(function() {
-    getAndDisplayShoppingList();
-    handleShoppingListAdd();
-    handleShoppingListDelete();
-    handleShoppingCheckedToggle();
-    getAndDisplayRecipes();
-    handleRecipeAdd();
-    handleRecipeDelete();
+    getAndDisplayBlogList();
+    handleBlogListAdd();
+    handleBlogListDelete();
+    getAndDisplayPosts();
+    handlePostAdd();
+    handlePostDelete();
   });

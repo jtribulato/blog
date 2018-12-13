@@ -28,12 +28,12 @@ var shoppingItemTemplate = (
   );
   
   
-  var RECIPES_URL = '/recipes';
-  var SHOPPING_LIST_URL = '/shopping-list';
+  const BLOG_URL = '/blog';
+
   
   
   function getAndDisplayRecipes() {
-    console.log('Retrieving recipes')
+    console.log('Retrieving blog listings')
     $.getJSON(RECIPES_URL, function(recipes) {
       console.log('Rendering recipes');
       var recipesElement = recipes.map(function(recipe) {
@@ -203,7 +203,6 @@ var shoppingItemTemplate = (
     handleShoppingListAdd();
     handleShoppingListDelete();
     handleShoppingCheckedToggle();
-  
     getAndDisplayRecipes();
     handleRecipeAdd();
     handleRecipeDelete();

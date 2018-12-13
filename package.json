@@ -14,13 +14,13 @@
     },
     "repository": {
       "type": "git",
-      "url": ""
+      "url": "https://github.com/jtribulato/blog"
     },
     "keywords": [
       "node",
       "hyperdev",
       "express"
     ],
-    "license": ""
+    "license": "MIT"
   }
   

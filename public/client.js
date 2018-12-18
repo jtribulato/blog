@@ -75,19 +75,19 @@ var blogItemTemplate = (
     });
   }
   
-  // function addBlogItem(item) {
-  //   console.log('Adding blog item: ' + item);
-  //   $.ajax({
-  //     method: 'POST',
-  //     url: BLOG_LIST_URL,
-  //     data: JSON.stringify(item),
-  //     success: function(data) {
-  //       getAndDisplayBlogList();
-  //     },
-  //     dataType: 'json',
-  //     contentType: 'application/json'
-  //   });
-  // }
+    // function addBlogItem(item) {
+    //   console.log('Adding blog item: ' + item);
+    //   $.ajax({
+    //     method: 'POST',
+    //     url: BLOG_LIST_URL,
+    //     data: JSON.stringify(item),
+    //     success: function(data) {
+    //       getAndDisplayBlogList();
+    //     },
+    //     dataType: 'json',
+    //     contentType: 'application/json'
+    //   });
+    // }
   
   function deletePost(postId) {
     console.log('Deleting post `' + postId + '`');

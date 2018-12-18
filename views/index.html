@@ -18,17 +18,7 @@
             <h1>Blog of Blogs</h1>
         </header>
         <main>
-            <!-- <section>
-          <h2>Blog</h2>
-          <form id="blog-form">
-            <label for="blog-entry">Add an post</label>
-            <input type="text" name="blog-entry" id="js-new-item" placeholder="enter your  post">
-            <button type="submit">Add your Post</button>
-          </form>
 
-          <ul class="blog-items">
-          </ul>
-        </section> -->
             <hr>
             <section>
                 <h2>Welcome to my Blog</h2>
@@ -39,16 +29,21 @@
                     cillum dolore eu fugiat nulla pariatur.
                 </p>
                 <hr>
-                <form action="/blog-posts" method="post" id="js-post-form" >   
-                    <label for="blog-entry">Add a post</label><br>
-                    Title <input type="text" name="blog-entry-title" id="js-title" placeholder="enter the title of your  post"><br>
-                    Post <textarea type="text" name="blog-entry-content" id="js-content" placeholder="enter your post"></textarea><br>
-                    Author <input type="text" name="blog-entry-author" id="js-author" placeholder="enter your name"><br>
-                    Date <input type="date" name="blog-entry-publishDate" id="js-publishDate" placeholder="enter the date"><br>
-
- 
-                    <button type="submit">Submit your Post</button>
-                  </form>
+                 <form action="/blog-posts" method="post" id="js-post-form">
+                    <div class="form-area">
+                        <label for="blog-entry"><span class="label"> Add a post</span></label>
+                        <span class="js-input js-input-title">Title:</span><input type="text" name="blog-entry-title"
+                            id="js-title" placeholder="enter the title of your  post">
+                        <span class="js-input js-input-content">Post:</span><textarea type="text" name="blog-entry-content"
+                            id="js-content" placeholder="enter your post"></textarea>
+                        <span class="js-input js-input-author">Author:</span><input type="text" name="blog-entry-author"
+                            id="js-author" placeholder="enter your name">
+                        <span class="js-input js-input-publishDate">Date:</span><input type="date" name="blog-entry-publishDate"
+                            id="js-publishDate" placeholder="enter the date">
+                        <button type="submit">Submit your Post</button>
+                    </div>
+                </form>
+                <hr>
                 <ul class="blogListings">
                 </ul>
             </section>

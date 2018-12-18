@@ -15,8 +15,8 @@ var blogItemTemplate = (
       '<li class="js-post-publishDate">' +
       '</li>' +
       '<div class="post-controls">' +
-        '<button class="js-post-delete">' +
-          '<span class="button-label">delete</span>' +
+        '<button class="js-post-delete" id="js-post-delete">' +
+          '<span class="button-label">Delete</span>' +
         '</button>' +
       '</div>' +
     '</div>'

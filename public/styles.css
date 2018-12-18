@@ -5,7 +5,10 @@
   body {
     font-family: 'Roboto', sans-serif;
   }
-  
+  label {
+    font-weight: 800;
+    font-size: 1.2em;
+  }
   button, input[type="text"] {
     padding: 5px;
   }
@@ -51,3 +54,24 @@
   .js-post-publishDate {
     font-size: 10px;
   }
+  .js-input {
+    font-size: 15px;
+    font-weight: 800;
+ } 
+ .js-input, button{
+   margin-top: 10px;
+} 
+  }
+input, textarea {
+  width: 80%;
+}
+
+.form-area {
+  width: 80%;
+  display: grid;
+  margin: 0 auto;
+
+}
+.label {
+  margin-bottom: 10px;
+}

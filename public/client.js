@@ -1,14 +1,12 @@
 
 var blogItemTemplate = (
-    '<li class="js-blog-item">' +
-      '<p><span class="blog-item js-blog-item-name"></span></p>' +
-      
+    '<li class="js-blog-item">' + 
     '</li>'
   );
   
   var postTemplate = (
     '<div class="post js-post">' +
-      '<h3 class="js-post-title"><h3>' +
+      '<h2 class="js-post-title"></h2>' +
       '<hr>' +
       '<li class="js-post-content">' +
       '</li>' +
@@ -25,7 +23,7 @@ var blogItemTemplate = (
   );
   
   
-  const BLOG_URL = './Blog';
+  const BLOG_URL = '/blog-posts';
   
   
   function getAndDisplayPosts() {
@@ -35,10 +33,13 @@ var blogItemTemplate = (
       var postsElement = posts.map(function(post) {
         var element = $(postTemplate);
         element.attr('id', post.id);
-        element.find('.js-post-name').text(post.name);
+        element.find('.js-post-title').text(post.title);
+        element.find('.js-post-content').text(post.content);
+        element.find('.js-post-author').text(post.author);
+        element.find('.js-post-publishDate').text(post.publishDate);
         return element;
       });
-      $('.js-posts').html(postsElement)
+      $('.blogListings').html(postsElement)
     });
   }
   
@@ -134,13 +135,12 @@ var blogItemTemplate = (
   function handlePostAdd() {
     $('#js-post-form').submit(function(e) {
       e.preventDefault();
-      var ingredients = $(
-        e.currentTarget).find(
-        '#ingredients-list').val().split(',').map(
-          function(ingredient) { return ingredient.trim() });
+      
       addPost({
-        name: $(e.currentTarget).find('#post-name').val(),
-        ingredients: ingredients
+        title: $(e.currentTarget).find('#js-title').val(),
+        content: $(e.currentTarget).find('#js-content').val(),
+        author: $(e.currentTarget).find('#js-author').val(),
+        publishDate: $(e.currentTarget).find('#js-publishDate').val()
       });
     });
   }

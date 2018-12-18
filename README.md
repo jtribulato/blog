@@ -1,7 +1,6 @@
 # Blog v1.0
 
-[Github](https://github.com/jtribulato/blog) | 
-[Glitch](https://glitch.com/edit/#!/blog-v1.0)
+[Github](https://github.com/jtribulato/blog) 
 
 * Serves client that:
     + makes AJAX calls back to API endpoints to initially retrieve and display existing blog posts.

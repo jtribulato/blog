@@ -32,7 +32,8 @@ var blogItemTemplate = (
     console.log('Retrieving blog listings')
     $.getJSON(BLOG_URL, function(posts) {
       console.log('Rendering posts');
-      var postsElement = posts.map(function(post) {
+      let sortedData = posts.reverse();
+      var postsElement = sortedData.map(function(post) {
         var element = $(postTemplate);
         element.attr('id', post.id);
         element.find('.js-post-title').text(post.title);

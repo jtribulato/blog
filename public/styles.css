@@ -27,18 +27,9 @@
     list-style: none;
     padding-left: 0;
   }
-  
-  .post > li {
-    /* margin-bottom: 20px;
-    border: 1px solid grey;
-    padding: 20px; */
-  }
-  
   .post {
     display: block;
     color: black;
-    /* font-style: italic;
-    font-size: 20px; */
     margin-bottom: 15px;
   }
   .js-post-title {
@@ -46,13 +37,17 @@
     font-weight: 800;
  } 
   .js-post-author {
-    font-size: 10px;
+    font-size: 14px;
+    font-weight: 800;
+    color: black;
+    font-style: italic;  
   }
   .js-post-content {
-    font-size: 12px;
+    font-size: 14px;
   }
   .js-post-publishDate {
-    font-size: 10px;
+    font-size: 12px;
+    font-weight: 800;
   }
   .js-input {
     font-size: 15px;

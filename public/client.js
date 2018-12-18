@@ -5,19 +5,21 @@ var blogItemTemplate = (
   );
   
   var postTemplate = (
-    '<div class="post js-post">' +
+    '<div class="post js-post js-blog-item">' +
       '<h2 class="js-post-title"></h2>' +
-      '<hr>' +
+
       '<li class="js-post-content">' +
       '</li>' +
-      '<li class="js-post-author">' +
-      '</li>' +
-      '<li class="js-post-publishDate">' +
+      '<li>  <span class="js-post-author">' +
+      '</span> - ' +
+      '<span class="js-post-publishDate">' +
+      '</span>' +
       '</li>' +
       '<div class="post-controls">' +
-        '<button class="js-post-delete" id="js-post-delete">' +
+        '<button class="js-blog-item-delete" id="js-post-delete">' +
           '<span class="button-label">Delete</span>' +
         '</button>' +
+        '<hr>' +
       '</div>' +
     '</div>'
   );
@@ -43,21 +45,21 @@ var blogItemTemplate = (
     });
   }
   
-  function getAndDisplayBlogList() {
-    console.log('Retrieving blog list');
-    $.getJSON(BLOG_URL, function(items) {
-      console.log('Rendering blog list');
-      var itemElements = items.map(function(item) {
-        var element = $(blogItemTemplate);
-        element.attr('id', item.id);
-        var itemName = element.find('.js-blog-item-name');
-        itemName.text(item.name);
+  // function getAndDisplayBlogList() {
+  //   console.log('Retrieving blog list');
+  //   $.getJSON(BLOG_URL, function(items) {
+  //     console.log('Rendering blog list');
+  //     var itemElements = items.map(function(item) {
+  //       var element = $(blogItemTemplate);
+  //       element.attr('id', item.id);
+  //       var itemName = element.find('.js-blog-item-name');
+  //       itemName.text(item.name);
  
-        return element
-      });
-      $('.js-blog-list').html(itemElements);
-    });
-  }
+  //       return element
+  //     });
+  //     $('.js-blog-list').html(itemElements);
+  //   });
+  // }
   
   function addPost(post) {
     console.log('Adding post: ' + post);
@@ -73,19 +75,19 @@ var blogItemTemplate = (
     });
   }
   
-  function addBlogItem(item) {
-    console.log('Adding blog item: ' + item);
-    $.ajax({
-      method: 'POST',
-      url: BLOG_LIST_URL,
-      data: JSON.stringify(item),
-      success: function(data) {
-        getAndDisplayBlogList();
-      },
-      dataType: 'json',
-      contentType: 'application/json'
-    });
-  }
+  // function addBlogItem(item) {
+  //   console.log('Adding blog item: ' + item);
+  //   $.ajax({
+  //     method: 'POST',
+  //     url: BLOG_LIST_URL,
+  //     data: JSON.stringify(item),
+  //     success: function(data) {
+  //       getAndDisplayBlogList();
+  //     },
+  //     dataType: 'json',
+  //     contentType: 'application/json'
+  //   });
+  // }
   
   function deletePost(postId) {
     console.log('Deleting post `' + postId + '`');
@@ -99,9 +101,9 @@ var blogItemTemplate = (
   function deleteBlogItem(itemId) {
     console.log('Deleting blog item `' + itemId + '`');
     $.ajax({
-      url: BLOG_LIST_URL + '/' + itemId,
+      url: BLOG_URL + '/' + itemId,
       method: 'DELETE',
-      success: getAndDisplayBlogList
+      success: getAndDisplayPosts
     });
   }
   
@@ -145,41 +147,45 @@ var blogItemTemplate = (
     });
   }
   
-  function handleBlogListAdd() {
+  // function handleBlogListAdd() {
   
-    $('#js-blog-list-form').submit(function(e) {
-      e.preventDefault();
-      addBlogItem({
-        name: $(e.currentTarget).find('#js-new-item').val(),
-        checked: false
-      });
-    });
+  //   $('#js-blog-list-form').submit(function(e) {
+  //     e.preventDefault();
+  //     addBlogItem({
+  //       name: $(e.currentTarget).find('#js-new-item').val(),
+  //       checked: false
+  //     });
+  //   });
   
-  }
+  // }
   
-  function handlePostDelete() {
-    $('.js-posts').on('click', '.js-post-delete', function(e) {
-      e.preventDefault();
-      deletePost(
-        $(e.currentTarget).closest('.js-post').attr('id'));
-    });
-  }
+  // function handlePostDelete() {
+  //   $('.js-posts').on('click', '.js-post-delete', function(e) {
+  //     console.log('testing the handlePostDelete');
+  //     e.preventDefault();
+  //     deletePost(
+  //       $(e.currentTarget).closest('.js-post').attr('id'));
+  //   });
+  // }
   
   function handleBlogListDelete() {
+    console.log('testing the handleBlogPostDelete');
     $('.js-blog-list').on('click', '.js-blog-item-delete', function(e) {
       e.preventDefault();
       deleteBlogItem(
         $(e.currentTarget).closest('.js-blog-item').attr('id'));
+        console.log('testing after deleteBlogItem');  
+
     });
   }
   
   
   
   $(function() {
-    getAndDisplayBlogList();
-    handleBlogListAdd();
+    //getAndDisplayBlogList();
+    //handleBlogListAdd();
     handleBlogListDelete();
     getAndDisplayPosts();
     handlePostAdd();
-    handlePostDelete();
+    //handlePostDelete();
   });

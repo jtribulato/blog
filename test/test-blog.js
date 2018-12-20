@@ -40,11 +40,12 @@ describe("Blog Posts", function() {
 
   it("should add a blog post on POST", function() {
     const newPost = {
-      title: "Lorem ip some",
-      content: "foo foo foo foo",
-      author: "Emma Goldman"
+      title: "Some new Title",
+      content: "foo bar foo bar",
+      author: "John Tribulato",
+      publishDate: "12-23-2018"
     };
-    const expectedKeys = ["id", "publishDate"].concat(Object.keys(newPost));
+    const expectedKeys = ["id"].concat(Object.keys(newPost));
 
     return chai
       .request(app)
@@ -58,6 +59,7 @@ describe("Blog Posts", function() {
         expect(res.body.title).to.equal(newPost.title);
         expect(res.body.content).to.equal(newPost.content);
         expect(res.body.author).to.equal(newPost.author);
+        expect(res.body.publishDate).to.equal(newPost.publishDate);
       });
   });
 
@@ -80,8 +82,8 @@ describe("Blog Posts", function() {
         .get("/blog-posts")
         .then(function(res) {
           const updatedPost = Object.assign(res.body[0], {
-            title: "connect the dots",
-            content: "la la la la la"
+            title: "Send me a puppy",
+            content: "ofsdlkjlk slkdjf fs lkjf"
           });
           return chai
             .request(app)

@@ -9,14 +9,16 @@
   },
   "dependencies": {
     "body-parser": "^1.15.2",
-    "express": "^4.12.4",
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.0",
+    "express": "^4.16.4",
     "morgan": "^1.7.0",
-    "uuid": "^2.0.3",
-    "start": "5.1.0"
+    "start": "5.1.0",
+    "uuid": "^2.0.3"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jtribulato/blog"
+    "url": "git+https://github.com/jtribulato/blog.git"
   },
   "keywords": [
     "node",
@@ -25,5 +27,13 @@
   "license": "MIT",
   "devDependencies": {
     "mocha": "^5.2.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/jtribulato/blog/issues"
+  },
+  "homepage": "https://github.com/jtribulato/blog#readme",
+  "directories": {
+    "test": "test"
+  },
+  "author": ""
 }
